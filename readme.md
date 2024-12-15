@@ -165,4 +165,4 @@ Error responses will be in the following format:
 Contributions are welcome! If you encounter any issues or have suggestions for improvement, feel free to create an issue or submit a pull request.
 
 ## License
-MIT
+Apache-2.0
