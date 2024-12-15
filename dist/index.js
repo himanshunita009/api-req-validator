@@ -1,6 +1,4 @@
 "use strict";
-// This middleware is designed to validate incoming requests based on predefined rules.
-// It follows a specific folder structure and file naming convention.
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -11,30 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// Folder Structure:
-// The project should have a folder named "modules" inside the "src" directory.
-// Each API should have its own subfolder inside "modules" (e.g., src/modules/apiName).
-// File Structure:
-// Each API subfolder should contain a file named "requestFormat.ts".
-// This file should define the validation rules for that specific API.
-// Validation Rules Format:
-// The validation rules in the "requestFormat.ts" file should follow this format:
-// required-optional | dataType | regexPattern | minValue-maxValue | length | allowedValues
-// Examples:
-// "required|string|^[a-zA-Z]+$" - Required string field with a regex pattern
-// "optional|int|^\\d+$|1-100" - Optional integer field with a regex pattern and min-max range
-// "required|array+string" - Required array of strings
-// Nested Fields:
-// To validate nested fields, use the "**" notation followed by the field name.
-// Example: "**.first_name:required|string" - Validates the "first_name" field at any nesting level.
-// Array Data Types:
-// For array data types, specify the data type using the "dataType+number" or "dataType+string" format.
-// Example: "required|array+int" - Required array of integers
-// Request Data Merging:
-// After validation, the data from req.body, req.query, and req.params will be merged and assigned to req.input.
-// URL Handling:
-// If there is a redirect URL defined in app.ts (e.g., app.use('/api', router)), the '/api' portion should be removed from req.path.
-// This ensures that the URL path matches the folder structure.
+exports.validateRequestHandler = void 0;
 const express_validator_1 = require("express-validator");
 const path_to_regexp_1 = require("path-to-regexp");
 const api_schema_validator_1 = require("./api-schema-validator");
@@ -259,10 +234,16 @@ class RequestValidator {
                 const errorMsg = (yield this.expressRuleBuilder(rules, input, '')) || (yield this.customValidator(input.body));
                 if (errorMsg === '')
                     return next();
-                return res.status(400).send(errorMsg);
+                return res.status(400).send({
+                    error: true,
+                    message: errorMsg
+                });
             }
             catch (error) {
-                return res.status(400).send(error.message);
+                return res.status(400).send({
+                    error: true,
+                    message: error.message
+                });
             }
         });
     }
@@ -295,4 +276,4 @@ const validateRequestHandler = (apiSecificationFilePath) => {
         return requestValidator.validateRequest(req, res, next);
     };
 };
-exports.default = validateRequestHandler;
+exports.validateRequestHandler = validateRequestHandler;

@@ -46,7 +46,7 @@ In upcoming versions, we plan to introduce support for custom validators. This f
 
 ## Installation
 ```bash
-npm install <package-name>
+npm i api-req-validator
 ```
 
 ## Usage
@@ -105,17 +105,17 @@ Integrate the middleware into your Node.js application.
 
 ```javascript
 const express = require("express");
-const validationMiddleware = require("<package-name>");
-const { schema } = require("./validationSchema");
+const {default : validateRequestHandler}  =  require('api-req-validator');
 
 const app = express();
 
 // Middleware to parse JSON requests
 app.use(express.json());
 
-// Apply the validation middleware
-app.use(validationMiddleware(schema));
-
+//Get absolute file path
+const filePath = path.resolve(__dirname,"./apiSpecification.js");
+// Apply the validation middleware and apss the file path
+app.use(validateRequestHandler(filePath));
 // Define your routes
 app.post("/api/login", (req, res) => {
   res.send("Login successful!");
@@ -149,11 +149,7 @@ Error responses will be in the following format:
 ```json
 {
   "error": true,
-  "message": "Validation error",
-  "details": [
-    "username is required",
-    "email must be a valid email address"
-  ]
+  "message": "<specific error message>"
 }
 ```
 
