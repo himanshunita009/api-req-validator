@@ -105,7 +105,7 @@ Integrate the middleware into your Node.js application.
 
 ```javascript
 const express = require("express");
-const {default : validateRequestHandler}  =  require('api-req-validator');
+const {validateRequestHandler}  =  require('api-req-validator');
 
 const app = express();
 
