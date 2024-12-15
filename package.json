@@ -1,0 +1,38 @@
+{
+  "name": "api-req-validator",
+  "version": "1.0.0",
+  "description": "Validate api request against api schema",
+  "type": "commonjs",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "keywords": [
+    "validation",
+    "schema",
+    "typescript",
+    "npm",
+    "nodejs","middleware","express-api-validator","express-request-validator","express-api-validator","express-validator","request-validation","api-validation","input-validation","validation-middleware","express","data-validation","api","node","validation","javascript","validation-rules","nodejs-middleware","error-handling","request-validator","custom-validation","data-integrity","api-request","validation-library","backend-validation","validation-framework","microservices","express-middleware","api-error-handling"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/himanshunita009/api-req-validator.git"
+  },
+  "author": "Himanshu Seth",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/himanshunita009/api-req-validator/issues"
+  },
+  "homepage": "https://github.com/himanshunita009/api-req-validator#readme",
+  "dependencies": {
+    "express-validator": "^7.2.0",
+    "path-to-regexp": "^8.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "path": "^0.12.7",
+    "typescript": "^4.0.0"
+  }
+}
